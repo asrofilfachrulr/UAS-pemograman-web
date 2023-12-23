@@ -57,4 +57,11 @@ CREATE TABLE `msgs_n_impressions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO sman_5_malang.roles (id, name) VALUES
+(1, 'ADMIN'),
+(2, 'STAFF'),
+(3, 'TEACHER'),
+(4, 'STUDENT'),
+(5, 'OTHERS');
+
 INSERT INTO sman_5_malang.users (id, username, password, fullname, role_id) VALUES(1, 'admin', '$2y$10$alUPQnvOFrS.fpdTtbzLIuvvCDVf49ifsgC3Ni49o16BW5bkaAjG6', 'admin', 1);
