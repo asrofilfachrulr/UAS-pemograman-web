@@ -1,0 +1,60 @@
+-- sman_5_malang.users definition
+
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `fullname` text,
+  `role_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `users_FK` (`role_id`),
+  CONSTRAINT `users_FK` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- sman_5_malang.roles definition
+
+CREATE TABLE `roles` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- sman_5_malang.students definition
+
+CREATE TABLE `students` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `student_number` int NOT NULL,
+  `name` text NOT NULL,
+  `address` text NOT NULL,
+  `entry_year` int unsigned NOT NULL,
+  `prev_school_name` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `students_UN` (`student_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- sman_5_malang.employee definition
+
+CREATE TABLE `employee` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `employee_id` int NOT NULL,
+  `name` text NOT NULL,
+  `role_name` text NOT NULL,
+  `address` text NOT NULL,
+  `last_edu` text NOT NULL,
+  `teaching_history` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `employee_UN` (`employee_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- sman_5_malang.msgs_n_impressions definition
+
+CREATE TABLE `msgs_n_impressions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `class` text NOT NULL,
+  `message` text NOT NULL,
+  `impression` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO sman_5_malang.users (id, username, password, fullname, role_id) VALUES(1, 'admin', '$2y$10$alUPQnvOFrS.fpdTtbzLIuvvCDVf49ifsgC3Ni49o16BW5bkaAjG6', 'admin', 1);

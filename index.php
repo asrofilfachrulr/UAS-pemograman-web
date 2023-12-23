@@ -1,8 +1,3 @@
-<?php
-if (!$_COOKIE["token"])
-  header("Location: login.php?isLogged=false");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
