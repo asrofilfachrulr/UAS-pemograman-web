@@ -1,3 +1,9 @@
+<?php
+  include("./scripts/session_check.php");
+
+  session_check_for_protected();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +21,9 @@
 </head>
 
 <body>
-  <p class="text-lg text-red-700">Hello Index</p>
+  <p><?php echo $_SESSION["user_id"]; ?></p>
+  <p class="text-lg">Hello <?php echo $_SESSION["username"]; ?></p>
+  <a href="./scripts/logout.php" class="text-blue-800">Logout</a>
 </body>
 
 </html>
