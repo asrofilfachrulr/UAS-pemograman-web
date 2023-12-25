@@ -19,22 +19,80 @@ session_check_for_auth();
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      font-family: Inter, 'sans-serif';
-      height: 100vh;
+      font-family: Inter, sans-serif;
+    }
+
+    .has-caret-down {
+      position: relative;
+      margin-inline-end: 14px;
+    }
+
+    .has-caret-down::after {
+      content: "▾";
+      position: absolute;
+      font-size: 0.65rem;
+      color: white;
+      top: 50%;
+      right: -14px;
+      transform: translateY(-50%);
+    }
+
+    li:has(.nav-links) {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-inline: 1rem;
+      cursor: pointer;
+      transition: all 200ms ease-in-out;
+    }
+
+    li:has(.nav-links):hover {
+      background: #005DD4;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      background-color: white;
+      border: 1px solid #787878;
+      transition: all 200ms ease-in-out;
+      font-size: 0.9rem;
+    }
+
+    li:has(.nav-links):hover .dropdown-menu,
+    .dropdown-menu:hover {
+      display: inline-block;
+      top: 60px;
+      min-width: 100%;
+      width: max-content;
+      max-width: 160px;
+      height: fit-content;
+    }
+
+    .dropdown-menu ul {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown-menu li {
       width: 100%;
-      overflow: hidden;
+      padding: 1rem;
     }
 
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+    .dropdown-menu li:hover {
+      background-color: #005DD4;
+      color: white;
     }
 
-    /* Firefox */
-    input[type=number] {
-      -moz-appearance: textfield;
+    section {
+      margin-block: 1rem;
+      line-height: 2;
+      color: #4d5156;
     }
   </style>
 </head>
