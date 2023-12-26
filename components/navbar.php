@@ -169,7 +169,6 @@ function show_navbar()
                     </a>
                     <div class="dropdown-menu">
                         <ul>
-                            <li><a class="font-sans font-semibold" href="#">Profil</a></li>
                             <li><a class="font-sans font-semibold" href="'.$baseURL.'scripts/logout.php">Keluar</a></li>
                         </ul>
                     </div>

@@ -82,10 +82,25 @@ $conn->close();
       <div class="mt-12">
         <h4 class="font-semibold text-2xl">Tabel Data Siswa</h4>
         <?php
-        if (isset($_GET["msg"]) && $_GET["msg"] == "postSuccess") {
-          echo '
-            <p class="text-sm text-red-500">Data siswa berhasil disimpan</p>
-            ';
+        if (isset($_GET["msg"])) {
+          $msg = $_GET["msg"];
+          switch ($msg) {
+            case "postSuccess":
+              echo '
+              <p class="text-sm text-red-500">Data siswa berhasil disimpan</p>
+              ';
+              break;
+            case "editSuccess":
+              echo '
+                <p class="text-sm text-red-500">Data siswa berhasil diubah</p>
+                ';
+              break;
+            case "deleteSuccess":
+              echo '
+                <p class="text-sm text-red-500">Data siswa berhasil dihapus</p>
+                ';
+              break;
+          }
         }
         ?>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-auto">
@@ -148,8 +163,8 @@ $conn->close();
                   </td>
                   ' . ($_SESSION["role_id"] == 1 ? '
                   <td class="px-6 py-4 text-right flex flex-col">
-                    <a href="form-edit-data-siswa.php?id=' . $student["id"] . '" class="font-medium text-blue-600 hover:underline">Edit</a>
-                    <a href="hapus-data-siswa.php?id=' . $student["id"] . '" class="font-medium text-red-600 hover:underline">Hapus</a>
+                    <a href="edit-data-siswa.php?id=' . $student["id"] . '" class="font-medium text-blue-600 hover:underline">Edit</a>
+                    <a href="./scripts/delete_data_siswa.php?id=' . $student["id"] . '" class="font-medium text-red-600 hover:underline">Hapus</a>
                   </td>
                 ' : '') . '</tr>';
               }
