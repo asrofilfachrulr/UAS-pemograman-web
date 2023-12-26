@@ -50,6 +50,7 @@ function show_navbar_styles()
     border: 1px solid #787878;
     transition: all 200ms ease-in-out;
     font-size: 0.9rem;
+    z-index: 999;
   }
 
   li:has(.nav-links):hover .dropdown-menu,
