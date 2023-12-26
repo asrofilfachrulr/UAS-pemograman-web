@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
   $message = $_POST["message"];
   $impression = $_POST["impression"];
 
-  if (!(empty($fullname) || empty($class) || empty($message) || empty($impression))) {
+  if (!empty($fullname) && !empty($class) && !empty($message) && !empty($impression)) {
     include("../config/db.php");
     try {
       $stmt = $conn->prepare("INSERT into msgs_n_impressions (`name`, `class`, `message`, `impression`) VALUES (?, ?, ?, ?)");
