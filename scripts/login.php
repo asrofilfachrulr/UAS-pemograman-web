@@ -1,15 +1,13 @@
 <?php
 include("../config/db.php");
 
+// print_r($_POST);
+
 if (isset($_POST["username"]) && isset($_POST["password"])) {
   $username = $_POST["username"];
   $password = $_POST["password"];
 
-  $id = 0;
-  $hashed_password = "";
-  $fullname = "";
-
-  $stmt = $conn->prepare("SELECT id, fullname, password FROM users WHERE username = ?");
+  $stmt = $conn->prepare("SELECT id, fullname, password, role_id FROM users WHERE username = ?");
 
   if (!$stmt) {
     die("Error preparing statement: " . $conn->error);
@@ -18,7 +16,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
   $stmt->bind_param("s", $username);
 
   if ($stmt->execute()) {
-    $stmt->bind_result($id, $fullname, $hashed_password);
+    $stmt->bind_result($id, $fullname, $hashed_password, $role_id);
     $stmt->fetch();
 
     $stmt->free_result();
@@ -29,8 +27,15 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
       $_SESSION["username"] = $username;
       $_SESSION["user_id"] = $id;
       $_SESSION["fullname"] = $fullname;
+      $_SESSION["role_id"] = $role_id;
 
-      header("Location: ../index.php");
+
+      if(!empty($_POST["redirect_url"])) {
+        $redirect_url = $_POST["redirect_url"];
+        header("Location: ../". urlencode($redirect_url));
+      } else {
+        header("Location: ../index.php");
+      }
     } else {
       header("Location: ../login.php?error=wrongCredential");
     }

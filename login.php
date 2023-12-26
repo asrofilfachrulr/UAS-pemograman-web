@@ -43,7 +43,7 @@ session_check_for_auth();
               <p class="text-sm">Silahkan masukan kredensial anda</p>
               <?php
               if (isset($_GET["error"])) {
-                $error_tag = "<p class=\"text-red-600 font-medium text-sm\">";
+                $error_tag = "<p class=\"text-red-600 font-medium text-sm max-w-[300px] text-center\">";
                 $error_name = $_GET["error"];
                 if ($error_name == "wrongCredential") {
                   $error_tag = $error_tag . "Kombinasi Username dan Kata Sandi salah!";
@@ -51,6 +51,8 @@ session_check_for_auth();
                   $error_tag = $error_tag . "Masuk terlebih dahulu";
                 } else if ($error_name == "fieldError") {
                   $error_tag = $error_tag . "Data salah";
+                } else if($error_name == "adminOnly"){
+                  $error_tag = $error_tag . "Menu ini khusus Administrator, silahkan masuk sebagai Administrator";
                 }
                 $error_tag = $error_tag . "</p>";
                 echo $error_tag;
@@ -58,8 +60,19 @@ session_check_for_auth();
               ?>
             </div>
             <div class="middle">
+              <?php 
+                function get_redirect(){
+                  if (isset($_GET["redirect"])) {
+                    $redirect_url = $_GET["redirect"];
+                    return urlencode($redirect_url);
+                  }
+
+                  return "";
+                }
+              ?>
               <form action="./scripts/login.php" method="POST">
                 <div class="flex flex-col justify-center gap-2">
+                  <input type="hidden" name="redirect_url" value="<?php echo get_redirect() ?>">
                   <label class="text-sm" for="username-field">Username</label>
                   <input placeholder="soepandi"
                     class="placeholder:text-slate-500 w-full max-w-sm border transition-all focus:outline-none focus:border-[#21AD95] border-black rounded-md h-10 ps-2"
