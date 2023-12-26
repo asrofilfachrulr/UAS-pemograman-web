@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("./session_check.php");
+require_once("./session_check.php");
 session_check_endpoint_logged_only("input-pesan-kesan.php");
 
 if (isset($_POST["submit"])) {
@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
   $message = $_POST["message"];
   $impression = $_POST["impression"];
 
-  if (!(empty($fullname) || empty($class) || empty($message) || empty($impression))) {
+  if (empty($fullname) || empty($class) || empty($message) || empty($impression)) {
     include("../config/db.php");
     try {
       $stmt = $conn->prepare("INSERT into msgs_n_impressions (`name`, `class`, `message`, `impression`) VALUES (?, ?, ?, ?)");

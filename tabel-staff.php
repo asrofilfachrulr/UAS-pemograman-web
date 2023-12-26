@@ -81,6 +81,13 @@ $conn->close();
       </div>
       <div class="mt-12">
         <h4 class="font-semibold text-2xl">Tabel Data Staff & Guru</h4>
+        <?php
+        if (isset($_GET["msg"]) && $_GET["msg"] == "postSuccess") {
+          echo '
+            <p class="text-sm text-red-500">Data staff anda berhasil disimpan</p>
+            ';
+        }
+        ?>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-auto">
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -147,8 +154,8 @@ $conn->close();
                   </td>
                   ' . ($_SESSION["role_id"] == 1 ? '
                   <td class="px-6 py-4 text-right align-middle">
-                    <a href="form-edit-data-siswa.php?id=' . $student["id"] . '" class="font-medium text-blue-600 hover:underline">Edit</a>
-                    <a href="hapus-data-siswa.php?id=' . $student["id"] . '" class="font-medium text-red-600 hover:underline">Hapus</a>
+                    <a href="form-edit-data-staff.php?id=' . $emp["id"] . '" class="font-medium text-blue-600 hover:underline">Edit</a>
+                    <a href="hapus-data-staff.php?id=' . $emp["id"] . '" class="font-medium text-red-600 hover:underline">Hapus</a>
                   </td>
                 ' : '') . '</tr>';
               }

@@ -20,6 +20,9 @@ session_check_for_auth();
   <style>
     body {
       font-family: Inter, sans-serif;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
     }
 
     .has-caret-down {
@@ -99,7 +102,7 @@ session_check_for_auth();
 
 <body>
   <main class="h-full">
-    <div class="flex flex-row h-full">
+    <div class="flex flex-row h-full w-full">
       <div class="left w-[60%] hidden md:block">
         <img class="w-full h-full object-cover brightness-[0.4]" src="./assets/foto-depan.webp" alt="foto depan">
       </div>

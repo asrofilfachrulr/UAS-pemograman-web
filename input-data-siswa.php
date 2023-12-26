@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 include("./scripts/session_check.php");
@@ -42,7 +42,61 @@ include("./components/footer.php");
   <?php
   show_navbar();
   ?>
+  <main class="pb-[150px]">
+    <div class="mx-auto w-full max-w-5xl px-4 md:px-8 lg:px-0">
+      <!-- BREADCRUMBS -->
+      <div class="mt-12 p-1 flex items-end gap-3 text-sm font-semibold">
+        <div class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            fill="currentColor" class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
+            <path
+              d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5zM3 12v-2h2v2zm0 1h2v2H4a1 1 0 0 1-1-1zm3 2v-2h3v2zm4 0v-2h3v1a1 1 0 0 1-1 1zm3-3h-3v-2h3zm-7 0v-2h3v2z" />
+          </svg><span>&nbsp;Input Data</span></div> <span>></span> <span>Siswa</span>
+      </div>
 
+      <div class="mt-8">
+        <h4 class=" font-semibold">Input Data Siswa</h4>
+        <p class="font-light text-sm mt-2" >Masukan data siswa dibawah ini dengan benar</p>
+        <form class="mt-8" method="POST" action="./scripts/insert_data_siswa.php">
+          <div class="mb-6" >
+              <label for="fullname" class="block mb-2 text-sm font-medium text-gray-900">Nama Panjang</label>
+              <input type="text" id="fullname"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Asep Surasep" name="fullname" required>
+            </div>
+          <div class="grid gap-6 mb-6 md:grid-cols-2 col">
+          <div>
+              <label for="student-number" class="block mb-2 text-sm font-medium text-gray-900 ">Nomor Induk Siswa (NIS)</label>
+              <input type="number" id="student-number" min="10000" max="50000"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="14849" name="student_number" required>
+            </div>
+            <div>
+              <label for="entry-year" class="block mb-2 text-sm font-medium text-gray-900 ">Tahun Masuk</label>
+              <input type="number" id="entry-year" min="2010" max="2050"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="2014" name="entry_year" required>
+            </div>
+          </div>
+          <div class="mb-6" >
+              <label for="prev-school" class="block mb-2 text-sm font-medium text-gray-900">Nama Sekolah Sebelumnya</label>
+              <input type="text" id="prev-school"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="SMPN 12 Kota London" name="prev_school" required>
+            </div>
+          <div class="mb-6">
+            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 ">Alamat
+            </label>
+            <textarea rows="4" id="address" placeholder="Jl. Merdeka Barat No.43, Kec. Klojen, Kota Malang, Jawa Timur, 423890"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              name="address" required></textarea>
+          </div>
+          <button type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            value="submit" name="submit">Simpan</button>
+        </form>
+      </div>
+    </div>
+  </main>
   <?php
   show_footer();
   ?>

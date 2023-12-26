@@ -42,7 +42,7 @@ include("./components/footer.php");
   show_navbar();
   ?>
   <main class="pb-[150px]">
-    <div class="w-full max-w-5xl mx-auto px-4 md:px-0">
+    <div class="w-full max-w-5xl mx-auto px-4 md:px-8 lg:px-0">
       <!-- BREADCRUMBS -->
       <div class="mt-12 p-1 flex items-end gap-3 text-sm font-semibold">
         <div class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -86,7 +86,6 @@ include("./components/footer.php");
           <button type="submit"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" value="submit" name="submit">Submit</button>
         </form>
-
       </div>
     </div>
   </main>

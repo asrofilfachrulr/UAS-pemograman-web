@@ -3,6 +3,7 @@ session_start();
 include("./scripts/session_check.php");
 session_check_endpoint_logged_only("tabel-siswa.php");
 
+
 include("./components/navbar.php");
 include("./components/footer.php");
 
@@ -80,6 +81,13 @@ $conn->close();
       </div>
       <div class="mt-12">
         <h4 class="font-semibold text-2xl">Tabel Data Siswa</h4>
+        <?php
+        if (isset($_GET["msg"]) && $_GET["msg"] == "postSuccess") {
+          echo '
+            <p class="text-sm text-red-500">Data siswa berhasil disimpan</p>
+            ';
+        }
+        ?>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8 mx-auto">
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">

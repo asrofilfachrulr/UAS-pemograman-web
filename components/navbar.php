@@ -84,8 +84,7 @@ function show_navbar_styles()
 
 function show_navbar()
 {
-  $script_path = getScriptPath();
-  include($script_path.'/utils.php');
+  require_once(__DIR__.'/../scripts/utils.php');
 
   $baseURL = getBaseURL();
 

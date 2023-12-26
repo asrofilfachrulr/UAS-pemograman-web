@@ -1,10 +1,14 @@
 <?php
 session_start();
+require_once(__DIR__ . "/utils.php");
+$base_url = getBaseURL();
+
 // redirect to login if not logged yet if visit protected endpoint
 function session_check_endpoint_logged_only($redirect_url)
 {
   if (!(isset($_SESSION["user_id"]) && isset($_SESSION["username"]) && isset($_SESSION["fullname"]))) {
-    $location_url = "login.php?error=notLogged";
+    global $base_url;
+    $location_url = $base_url . "login.php?error=notLogged";
 
     if (!empty($redirect_url))
       $location_url .= "&redirect=" . urlencode($redirect_url);
@@ -17,10 +21,11 @@ function session_check_endpoint_logged_only($redirect_url)
 // as function name suggests
 function session_check_endpoint_admin_only($redirect_url)
 {
-  $location_url = "login.php?error=adminOnly";
+  global $base_url;
+  $location_url = $base_url . "login.php?error=adminOnly";
 
   if (!empty($redirect_url))
-    $location_url .= "&redirect=" . urlencode($redirect_url)."&mustLogin=1";
+    $location_url .= "&redirect=" . urlencode($redirect_url) . "&mustLogin=1";
 
   if (!(isset($_SESSION["user_id"]) && isset($_SESSION["username"]) && isset($_SESSION["fullname"]))) {
     header("Location: " . $location_url);
@@ -39,9 +44,11 @@ function session_check_endpoint_admin_only($redirect_url)
 // redirect to index if already logged
 function session_check_for_auth()
 {
+  global $base_url;
+
   if (isset($_SESSION["user_id"]) && isset($_SESSION["username"]) && isset($_SESSION["fullname"])) {
-    if(!isset($_GET["mustLogin"]) && $_GET["mustLogin"] != "1"){
-      header("Location: index.php"); 
+    if (!isset($_GET["mustLogin"]) && $_GET["mustLogin"] != "1") {
+      header("Location: " . $base_url . "index.php");
       exit;
     }
   }

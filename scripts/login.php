@@ -1,6 +1,7 @@
 <?php
 include("../config/db.php");
-
+include(__DIR__ . "/utils.php");
+$base_url = getBaseURL();
 // print_r($_POST);
 
 if (isset($_POST["username"]) && isset($_POST["password"])) {
@@ -30,14 +31,14 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
       $_SESSION["role_id"] = $role_id;
 
 
-      if(!empty($_POST["redirect_url"])) {
+      if (!empty($_POST["redirect_url"])) {
         $redirect_url = $_POST["redirect_url"];
-        header("Location: ../". urlencode($redirect_url));
+        header("Location: " . $base_url . urlencode($redirect_url));
       } else {
-        header("Location: ../index.php");
+        header("Location: " . $base_url . "index.php");
       }
     } else {
-      header("Location: ../login.php?error=wrongCredential");
+      header("Location: " . $base_url . "login.php?error=wrongCredential");
     }
   } else {
     die("Error executing the query: " . $stmt->error);
@@ -45,6 +46,6 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
   mysqli_close($conn);
 } else {
-  header("Location: ../login.php?error=fieldError");
+  header("Location: " . $base_url . "login.php?error=fieldError");
 }
 ?>
