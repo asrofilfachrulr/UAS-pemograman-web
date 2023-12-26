@@ -29,7 +29,7 @@ try {
 } catch (Exception $e) {
   echo "SQL query error" . $e->getMessage();
 }
-
+$stmt->free_result();
 $stmt->close();
 $conn->close();
 ?>
@@ -71,7 +71,7 @@ $conn->close();
   <main class="pb-[150px]">
     <div class="w-full max-w-5xl mx-auto px-4 md:px-0 mt-12">
       <!-- BREADCRUMBS -->
-      <div class="mt-12 p-1 flex items-end gap-4 text-sm font-semibold">
+      <div class="mt-12 p-1 flex items-end gap-3 text-sm font-semibold">
         <div class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
             fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
             <path

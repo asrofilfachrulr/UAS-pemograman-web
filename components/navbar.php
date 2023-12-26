@@ -145,8 +145,8 @@ function show_navbar()
                                 Kesan</a>
                             <div class="dropdown-menu">
                                 <ul>
-                                    <li><a class="font-sans font-semibold" href="'.$baseURL.'pesan-kesan.php">Buat Pesan dan Kesan</a></li>
-                                    <li><a class="font-sans font-semibold" href="'.$baseURL.'input-pesan-kesan.php">Lihat Pesan dan Kesan</a></li>
+                                    <li><a class="font-sans font-semibold" href="'.$baseURL.'input-pesan-kesan.php">Buat Pesan dan Kesan</a></li>
+                                    <li><a class="font-sans font-semibold" href="'.$baseURL.'pesan-kesan.php">Lihat Pesan dan Kesan</a></li>
                                 </ul>
                             </div>
                         </li>';
@@ -176,7 +176,7 @@ function show_navbar()
                 </li>';
   } else {
     $navbar_tag .= '
-                        <li class="max-w-[220px]" ><a class="text-white nav-links nav-links-end text-sm font-sans font-semibold text-ellipsis" '.$baseURL.'login.php">
+                        <li class="max-w-[220px]" ><a class="text-white nav-links nav-links-end text-sm font-sans font-semibold text-ellipsis" href="'.$baseURL.'login.php">
                         Masuk
                     </a>';
   }

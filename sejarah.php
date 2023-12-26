@@ -42,7 +42,7 @@ include("./components/footer.php");
   <main class="pb-[150px]">
     <div class="w-full max-w-5xl mx-auto px-4 md:px-0">
       <!-- BREADCRUMBS -->
-      <div class="mt-12 p-1 flex items-end gap-4 text-sm font-semibold">
+      <div class="mt-12 p-1 flex items-end gap-3 text-sm font-semibold">
         <div class="flex items-end gap-1"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
             viewBox="0 0 24 24" class="inline">
             <path

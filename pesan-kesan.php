@@ -1,9 +1,34 @@
 <?php
 session_start();
-include("./scripts/session_check.php");
 
 include("./components/navbar.php");
 include("./components/footer.php");
+
+include("./config/db.php");
+
+try {
+  $stmt = $conn->prepare("SELECT name, class, message, impression FROM msgs_n_impressions");
+  $stmt->execute();
+
+  $data = array();
+
+  $stmt->bind_result($name, $class, $message, $impression);
+  while ($stmt->fetch()) {
+    $data[] = array(
+      "name" => $name,
+      "class" => $class,
+      "message" => $message,
+      "impression" => $impression
+    );
+  }
+  ;
+} catch (Exception $e) {
+  echo "<p> Error retrieving data: " . $e->getMessage() . "</p>";
+} finally {
+  $stmt->free_result();
+  $stmt->close();
+  $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +65,53 @@ include("./components/footer.php");
   <?php
   show_navbar();
   ?>
+  <main class="pb-[150px]">
+    <div class="mt-12 w-full max-w-6xl px-4 lg:px-0 mx-auto">
+      <!-- BREADCRUMBS -->
+      <div class="mt-12 p-1 flex items-end gap-3 text-sm font-semibold">
+        <div class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            fill="currentColor" class="bi bi-envelope-heart" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l3.235 1.94a2.76 2.76 0 0 0-.233 1.027L1 5.384v5.721l3.453-2.124c.146.277.329.556.55.835l-3.97 2.443A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741l-3.968-2.442c.22-.28.403-.56.55-.836L15 11.105V5.383l-3.002 1.801a2.76 2.76 0 0 0-.233-1.026L15 4.217V4a1 1 0 0 0-1-1zm6 2.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+          </svg> <span>&nbsp;Pesan dan Kesan</span></div> <span>></span> <span>Lihat Pesan Kesan</span>
+      </div>
+
+      <div class="mt-12">
+        <h4 class="font-semibold">Pesan Kesan Warga Sekolah terhadap SMAN 5 Malang</h4>
+        <?php
+        if (isset($_GET["msg"]) && $_GET["msg"] == "postSuccess") {
+          echo '
+            <p class="text-sm text-red-500">Pesan kesan anda berhasil disimpan</p>
+            ';
+        }
+        ?>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-8 gap-8">
+          <?php
+          foreach ($data as $row) {
+            echo '
+            <div
+              class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 text-sm">
+              <h5 class="mb-2 font-bold tracking-tight text-gray-900">
+              ' . $row["name"] . '
+              </h5>
+              <p class="font-light text-xs text-gray-700">
+              (' . $row["class"] . ')
+              </p>
+              <p class="font-normal mt-2 text-gray-700"><span class="font-semibold">Pesan:</span> 
+              ' . $row["message"] . '
+              </p>
+              <div class="my-4" ><hr></div>
+              <p class="font-normal text-gray-700"><span class="font-semibold">Kesan:</span>
+              ' . $row["impression"] . '
+              </p>
+            </div>            
+            ';
+          }
+          ?>
+        </div>
+      </div>
+    </div>
+  </main>
   <?php
   show_footer();
   ?>
