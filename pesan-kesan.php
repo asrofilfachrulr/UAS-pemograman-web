@@ -90,7 +90,7 @@ try {
           foreach ($data as $row) {
             echo '
             <div
-              class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 text-sm">
+              class="block max-w-sm p-6 bg-white border-gray-200 rounded-lg transition-all shadow border-2 hover:border-blue-500 hover:-translate-x-2 hover:-translate-y-2 text-sm">
               <h5 class="mb-2 font-bold tracking-tight text-gray-900">
               ' . $row["name"] . '
               </h5>

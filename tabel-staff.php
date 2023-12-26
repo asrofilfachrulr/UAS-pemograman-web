@@ -70,7 +70,7 @@ $conn->close();
   show_navbar();
   ?>
   <main class="pb-[150px]">
-    <div class="w-full max-w-5xl mx-auto px-4 md:px-0 mt-12">
+    <div class="w-full max-w-7xl mx-auto px-4 md:px-12 lg:px-4 mt-12">
       <!-- BREADCRUMBS -->
       <div class="mt-12 p-1 flex items-end gap-3 text-sm font-semibold">
         <div class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
