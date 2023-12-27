@@ -1,15 +1,10 @@
-<?php
-include("./scripts/session_check.php");
-session_check_for_auth();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | SMAN 5 Malang</title>
+  <title>Lupa Password | SMAN 5 Malang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
@@ -39,8 +34,8 @@ session_check_for_auth();
             <div class="top flex flex-col items-center gap-4">
               <img class="w-[65.5px] h-[98px]" src="https://sman5malang.sch.id/wp-content/uploads/2021/09/logo.jpg"
                 alt="logo">
-              <p class="text-3xl font-semibold">Selamat Datang</p>
-              <p class="text-sm">Silahkan masukan kredensial anda</p>
+              <p class="text-3xl font-semibold">Lupa Password</p>
+              <p class="text-sm">Silahkan masukan kredensial baru anda</p>
               <?php
               if (isset($_GET["error"])) {
                 $error_tag = "<p class=\"text-red-600 font-medium text-sm max-w-[300px] text-center\">";
@@ -59,7 +54,7 @@ session_check_for_auth();
               }
               ?>
             </div>
-            <div class="middle">
+            <div class="middle mt-8">
               <?php 
                 function get_redirect(){
                   if (isset($_GET["redirect"])) {
@@ -70,22 +65,27 @@ session_check_for_auth();
                   return "";
                 }
               ?>
-              <form action="./scripts/login.php" method="POST">
+              <form action="./scripts/reset_password.php" method="POST">
                 <div class="flex flex-col justify-center gap-2">
-                  <input type="hidden" name="redirect_url" value="<?php echo get_redirect() ?>">
-                  <label class="text-sm" for="username-field">Username</label>
+                  <label class="text-sm" for="id-account">ID Akun</label>
+                  <input placeholder="xxx"
+                    class="placeholder:text-slate-500 w-full max-w-sm border transition-all focus:outline-none focus:border-[#21AD95] border-black rounded-md h-10 ps-2" min="2" max="9999999" 
+                    type="number" name="id_account" id="id-account" required>
+                    <label class="text-sm mt-4" for="username-field">Username</label>
                   <input placeholder="soepandi"
                     class="placeholder:text-slate-500 w-full max-w-sm border transition-all focus:outline-none focus:border-[#21AD95] border-black rounded-md h-10 ps-2"
                     type="text" name="username" id="username-field" required>
-                  <label class="text-sm mt-4" for="password-field">Password</label>
+                    <label class="text-sm mt-4" for="password-field">Password Baru</label>
                   <input placeholder="******"
                     class="placeholder:text-slate-500 w-full max-w-sm border transition-all focus:outline-none focus:border-[#21AD95] border-black rounded-md h-10 ps-2"
                     type="password" name="password" id="password-field" required>
-                  <a class="transition-all text-[#21AD95] hover:text-[#EF5921] hover:underline text-xs w-fit"
-                    href="lupa-password.php">Lupa Password</a>
+                    <label class="text-sm mt-4" for="vpassword-field">Konfirmasi Password Baru</label>
+                  <input placeholder="******"
+                    class="placeholder:text-slate-500 w-full max-w-sm border transition-all focus:outline-none focus:border-[#21AD95] border-black rounded-md h-10 ps-2"
+                    type="password" name="vpassword" id="vpassword-field" required>
                   <input
                     class="transition-all mt-4 bg-[#21AD95] hover:bg-[#EF5921] hover:cursor-pointer rounded-lg px-6 py-3 text-white w-fit mx-auto"
-                    type="submit" value="Masuk" name="login">
+                    type="submit" value="Simpan" name="submit">
                   <div class="flex w-100 gap-2 items-center mt-4">
                     <div class="border-b-[1px] border-slate-400 flex-1"></div>
                     <span class="text-slate-500 w-fit text-xs">ATAU</span>
@@ -94,11 +94,15 @@ session_check_for_auth();
                   <a href="register.php"
                     class="transition-all mt-4 bg-transparent hover:text-[#EF5921] hover:cursor-pointer rounded-lg text-[#21AD95] mx-auto text-sm">Daftar
                     Akun</a>
+                    <a href="login.php"
+                    class="transition-all mt-1 bg-transparent hover:text-[#EF5921] hover:cursor-pointer rounded-lg text-[#21AD95] mx-auto text-sm">Login
+                    Akun</a>
+                    
                 </div>
               </form>
             </div>
             <div class="bottom">
-              <p class="text-sm">Masalah dengan akun? hubungi <a
+              <p class="text-sm mt-12">Masalah dengan akun? hubungi <a
                   class="transition-all text-[#21AD95] hover:text-[#EF5921] hover:underline"
                   href="https://wa.me/6282257291200" target="_blank">adminstrator</a></p>
             </div>
